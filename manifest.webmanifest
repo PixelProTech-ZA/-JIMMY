@@ -1,0 +1,19 @@
+{
+  "id": "/pixelprotech-jimmy-office-clerk",
+  "name": "Jimmy · the clockwork office clerk",
+  "short_name": "Jimmy",
+  "description": "A clockwork clerk who does your office paperwork in front of you: extract text, pull tables, merge, split, sort files and write invoices. Runs on your device.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#07070a",
+  "theme_color": "#07070a",
+  "categories": ["productivity", "business", "utilities"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

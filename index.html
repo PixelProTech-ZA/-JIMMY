@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Jimmy · the clockwork office clerk</title>
+<meta name="description" content="Jimmy is a clockwork clerk who does your office paperwork in front of you: extract text, pull tables, merge, split, sort files and write invoices. Everything runs on your device.">
+<meta name="theme-color" content="#07070a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <img src="favicon.svg" alt="" width="44" height="44">
+    <div>
+      <h1>JIMMY</h1>
+      <p>the clockwork office clerk</p>
+    </div>
+  </div>
+  <nav class="toggles" aria-label="Jimmy settings">
+    <button type="button" id="tOffice" class="tog" aria-pressed="false" title="Short, dry, no jokes">Office mode</button>
+    <button type="button" id="tFast" class="tog" aria-pressed="false" title="Jimmy sprints through the walk">Skip the walk</button>
+    <button type="button" id="tVoice" class="tog" aria-pressed="false" title="Jimmy speaks his lines out loud">Voice</button>
+    <button type="button" id="bSettings" class="tog">Letterhead</button>
+  </nav>
+</header>
+
+<main>
+  <section class="stage" id="stage" aria-label="Jimmy's office">
+    <canvas id="scene" role="img" aria-label="Jimmy, a brass clockwork clerk, stands in his office next to the in-tray and the Clatter-9 machine."></canvas>
+    <div id="bubble" class="bubble" hidden></div>
+  </section>
+  <p id="said" class="sr" aria-live="polite"></p>
+
+  <form id="cmd" class="cmd" autocomplete="off">
+    <button type="button" id="attach" class="btn ghost">+ Add files</button>
+    <input id="cmdText" type="text" inputmode="text" enterkeyhint="go" placeholder='Tell Jimmy: "extract", "tables", "merge", "split 3-7", "sort", "invoice for Acme R1500"' aria-label="Command for Jimmy">
+    <button type="button" id="mic" class="btn ghost" hidden>Speak</button>
+    <button type="submit" class="btn go">GO</button>
+  </form>
+
+  <div class="chips" id="chips" role="group" aria-label="Jimmy's jobs">
+    <button type="button" data-job="extract"><b>Extract</b><span>PDF, DOCX, XLSX, TXT to text</span></button>
+    <button type="button" data-job="tables"><b>Tables</b><span>pull tables to Excel or CSV</span></button>
+    <button type="button" data-job="merge"><b>Merge</b><span>PDFs and photos into one PDF</span></button>
+    <button type="button" data-job="split"><b>Split</b><span>cut a PDF by pages</span></button>
+    <button type="button" data-job="sort"><b>Sort</b><span>file, rename, find duplicates</span></button>
+    <button type="button" data-job="invoice"><b>Invoice</b><span>invoices and quotes as PDF</span></button>
+  </div>
+
+  <div class="opts">
+    <label>Pages to keep <input id="range" type="text" placeholder="e.g. 3-7 or 1,4,6-8 (blank = every page)" size="28"></label>
+    <label>Table output
+      <select id="fmt"><option value="xlsx">Excel (.xlsx)</option><option value="csv">CSV files</option></select>
+    </label>
+  </div>
+
+  <div class="cols">
+    <section class="panel" aria-labelledby="hTray">
+      <h2 id="hTray">In-tray <small id="trayCount">empty</small></h2>
+      <ul id="trayList" class="list"></ul>
+      <button type="button" id="clearTray" class="btn ghost small" hidden>Empty the tray</button>
+    </section>
+    <section class="panel" aria-labelledby="hOut">
+      <h2 id="hOut">Handed over <small id="outCount"></small></h2>
+      <ul id="outList" class="list"></ul>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <p>Jimmy by <b>PixelProTech Solutions (Pty) Ltd</b> · Centurion, Gauteng · pixelprotechsolutions@proton.me</p>
+  <p>Your files never leave this device. Jimmy has no AI model behind him: he reads your command by keywords and does the work with real code. He can't read scans or photos yet.</p>
+</footer>
+
+<input type="file" id="picker" multiple hidden>
+
+<dialog id="dlgInvoice">
+  <form method="dialog" id="fInvoice" class="dlg">
+    <h2>Jimmy, write this up</h2>
+    <div class="row2">
+      <label>Document <select id="iKind"><option value="invoice">Invoice</option><option value="quote">Quotation</option></select></label>
+      <label>Number <input id="iNo" type="text" readonly></label>
+    </div>
+    <label>Client <input id="iClient" type="text" required placeholder="Client or company name"></label>
+    <label>Client address <textarea id="iAddr" rows="2" placeholder="Street, suburb, city (optional)"></textarea></label>
+    <div class="row2">
+      <label>Date <input id="iDate" type="date" required></label>
+      <label>Due in (days) <input id="iDue" type="number" min="0" max="365" value="30"></label>
+    </div>
+    <label>Reference / PO number <input id="iRef" type="text" placeholder="optional"></label>
+    <fieldset>
+      <legend>Line items</legend>
+      <div id="iItems"></div>
+      <button type="button" id="iAdd" class="btn ghost small">+ Add line</button>
+    </fieldset>
+    <label class="check"><input id="iVat" type="checkbox"> Add 15% VAT (tax invoice)</label>
+    <label>Notes <textarea id="iNotes" rows="2" placeholder="Thank you for your business."></textarea></label>
+    <p class="total" id="iTotal">Total R0.00</p>
+    <div class="actions">
+      <button value="cancel" class="btn ghost" formnovalidate>Cancel</button>
+      <button type="submit" value="ok" class="btn go" id="iGo">Hand it to Jimmy</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlgSettings">
+  <form method="dialog" id="fSettings" class="dlg">
+    <h2>Letterhead and ledger</h2>
+    <p class="muted">Printed at the top of every invoice. Saved only on this device.</p>
+    <label>Company name <input id="sName" type="text"></label>
+    <label>Address <input id="sAddr" type="text"></label>
+    <div class="row2">
+      <label>Registration no. <input id="sReg" type="text"></label>
+      <label>VAT no. <input id="sVat" type="text"></label>
+    </div>
+    <div class="row2">
+      <label>Email <input id="sMail" type="text"></label>
+      <label>Phone <input id="sTel" type="text"></label>
+    </div>
+    <label>Banking details <textarea id="sBank" rows="3" placeholder="Bank, account name, account number, branch code"></textarea></label>
+    <label class="check"><input id="sVatOn" type="checkbox"> New invoices charge 15% VAT by default</label>
+    <p class="muted" id="sLedger"></p>
+    <div class="actions">
+      <button type="button" class="btn ghost" id="sCsv">Download ledger CSV</button>
+      <button value="cancel" class="btn ghost" formnovalidate>Close</button>
+      <button type="submit" value="ok" class="btn go">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="pdf.min.js"></script>
+<script src="pdf-lib.min.js"></script>
+<script src="jszip.min.js"></script>
+<script src="xlsx.full.min.js"></script>
+<script src="mammoth.browser.min.js"></script>
+<script src="lines.js"></script>
+<script src="jobs.js"></script>
+<script src="jimmy.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

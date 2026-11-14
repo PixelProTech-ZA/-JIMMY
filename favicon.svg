@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="br" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7cf5dc"/><stop offset=".38" stop-color="#00d4aa"/><stop offset=".78" stop-color="#00a888"/><stop offset="1" stop-color="#00765f"/></linearGradient>
+    <radialGradient id="eye" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f1eefa"/><stop offset=".35" stop-color="#00d4aa"/><stop offset=".8" stop-color="#008a70"/><stop offset="1" stop-color="#033a30"/></radialGradient>
+    <radialGradient id="bg" cx=".5" cy=".62" r=".7"><stop offset="0" stop-color="#0d1414"/><stop offset="1" stop-color="#07070a"/></radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  
+  <g transform="translate(256 256) scale(1.0) translate(-256 -256)">
+    <line x1="256" y1="98" x2="256" y2="112" stroke="#033a30" stroke-width="12" stroke-linecap="round"/>
+    <path d="M276.6,74.2 L284.7,78.9 L282.1,84.8 L273.2,82.1 L270.2,85.5 L274.0,94.0 L268.5,97.3 L262.8,89.9 L258.4,90.9 L256.4,100.0 L250.0,99.4 L249.8,90.1 L245.7,88.3 L238.7,94.5 L233.9,90.3 L239.2,82.6 L236.9,78.7 L227.6,79.7 L226.2,73.4 L235.0,70.3 L235.4,65.8 L227.3,61.1 L229.9,55.2 L238.8,57.9 L241.8,54.5 L238.0,46.0 L243.5,42.7 L249.2,50.1 L253.6,49.1 L255.6,40.0 L262.0,40.6 L262.2,49.9 L266.3,51.7 L273.3,45.5 L278.1,49.7 L272.8,57.4 L275.1,61.3 L284.4,60.3 L285.8,66.6 L277.0,69.7Z" fill="url(#br)" stroke="#033a30" stroke-width="3" fill-rule="evenodd"/>
+    <circle cx="256" cy="70" r="9" fill="#07070a"/>
+    <path d="M400.0,296.0 L423.8,303.7 L422.3,319.9 L397.4,323.0 L394.2,336.6 L414.9,350.6 L408.8,365.8 L384.1,361.7 L377.1,373.9 L393.0,393.2 L383.0,406.0 L360.4,395.2 L350.3,404.8 L360.1,427.9 L346.8,437.3 L328.2,420.6 L315.8,427.0 L318.7,451.8 L303.3,457.2 L290.2,435.9 L276.5,438.5 L272.3,463.2 L256.0,464.0 L249.4,439.8 L235.5,438.5 L224.5,461.0 L208.7,457.2 L209.2,432.2 L196.2,427.0 L179.3,445.5 L165.2,437.3 L172.7,413.5 L161.7,404.8 L140.3,417.8 L129.0,406.0 L143.0,385.2 L134.9,373.9 L110.7,380.3 L103.2,365.8 L122.4,349.8 L117.8,336.6 L92.8,335.9 L89.7,319.9 L112.7,310.0 L112.0,296.0 L88.2,288.3 L89.7,272.1 L114.6,269.0 L117.8,255.4 L97.1,241.4 L103.2,226.2 L127.9,230.3 L134.9,218.1 L119.0,198.8 L129.0,186.0 L151.6,196.8 L161.7,187.2 L151.9,164.1 L165.2,154.7 L183.8,171.4 L196.2,165.0 L193.3,140.2 L208.7,134.8 L221.8,156.1 L235.5,153.5 L239.7,128.8 L256.0,128.0 L262.6,152.2 L276.5,153.5 L287.5,131.0 L303.3,134.8 L302.8,159.8 L315.8,165.0 L332.7,146.5 L346.8,154.7 L339.3,178.5 L350.3,187.2 L371.7,174.2 L383.0,186.0 L369.0,206.8 L377.1,218.1 L401.3,211.7 L408.8,226.2 L389.6,242.2 L394.2,255.4 L419.2,256.1 L422.3,272.1 L399.3,282.0Z" fill="url(#br)" stroke="#033a30" stroke-width="4"/>
+    <circle cx="256" cy="296" r="136" fill="#0a1010" stroke="#7cf5dc" stroke-width="5"/>
+    <circle cx="256" cy="296" r="124" fill="none" stroke="#00765f" stroke-width="2" stroke-dasharray="3 7"/>
+    <!-- eyes -->
+    <g>
+      <circle cx="205" cy="268" r="34" fill="#05080a" stroke="url(#br)" stroke-width="8"/>
+      <circle cx="205" cy="268" r="24" fill="url(#eye)"/>
+      <circle cx="197" cy="259" r="6" fill="#fff" opacity=".9"/>
+      <circle cx="307" cy="268" r="34" fill="#05080a" stroke="url(#br)" stroke-width="8"/>
+      <circle cx="307" cy="268" r="24" fill="url(#eye)"/>
+      <circle cx="299" cy="259" r="6" fill="#fff" opacity=".9"/>
+    </g>
+    <!-- ticker tape mouth -->
+    <rect x="186" y="326" width="140" height="30" rx="8" fill="#05080a" stroke="#7cf5dc" stroke-width="4"/>
+    <g fill="#b8fff0">
+      <rect x="198" y="338" width="22" height="6" rx="3"/><rect x="226" y="338" width="8" height="6" rx="3"/><rect x="240" y="338" width="30" height="6" rx="3"/><rect x="276" y="338" width="10" height="6" rx="3"/><rect x="292" y="338" width="22" height="6" rx="3" opacity=".55"/>
+    </g>
+    <!-- paper tape curling out -->
+    <path d="M214 356 C 214 392, 250 396, 276 410 C 306 426, 332 410, 340 384" fill="none" stroke="#033a30" stroke-width="22" stroke-linecap="round" opacity=".5"/>
+    <path d="M214 356 C 214 392, 250 396, 276 410 C 306 426, 332 410, 340 384" fill="none" stroke="#f1eefa" stroke-width="16" stroke-linecap="round"/>
+    <path d="M214 356 C 214 392, 250 396, 276 410 C 306 426, 332 410, 340 384" fill="none" stroke="#9a95b0" stroke-width="3" stroke-dasharray="1 9" stroke-linecap="round"/>
+  </g>
+</svg>
